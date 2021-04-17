@@ -26,38 +26,10 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 		ResultSet rs = st.executeQuery("SELECT * FROM FamilyDetails");  //Sql query
 		int d =1;
 		System.out.println();
-		System.out.println("   Disease Id    Disease Name        Disease Origin Date    Origin Place        Duration of disease");
+	
 		while(rs.next())
 		{
-//			String disId = rs.getString(1);
-//			String name = rs.getString(2);
-//			String date = rs.getString(3);
-//			String place = rs.getString(4);
-//			String Duration = rs.getString(5);
-//			diseases.setDiseaseId(disId);
-//			diseases.setDiseaseName(name);
-//			diseases.setDuration(Duration);
-//			diseases.setOriginDate(date);
-//			diseases.setOriginPlace(place);
-//			list.add(diseases);
-//			
-//			int spaces = 20- (name.length());  
-//			int spaces1 = 23 - (date.length());
-//			int spaces2 = 20- (place.length());
-//			
-//			for(int i=0; i<spaces; i++) {
-//				name = name + " "; 
-//			}
-//			for(int j=0; j<spaces1; j++) {
-//				date = date + " "; 
-//			}
-//			for(int k=0; k<spaces2; k++) {
-//				place = place + " "; 
-//			}
-//			
-//			String diseaseBrief = d+". "+disId+"    "+name+date+place+Duration;
-//			d++;
-//			System.out.println(diseaseBrief);
+
 			
 		}
 		return list;
