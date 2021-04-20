@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.healthInsurance.model.FamilyDetails;
-import com.healthInsurance.model.InsurancePolicy;
 import com.healthInsurance.utility.ConnectionManagerMysql;
 
 
@@ -99,10 +98,10 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 		int d =1;
 		
 		System.out.println();
-		System.out.println("   Customer Id    Policy Id     Monthly premium    InsuranceAmount    Plan Duration    FamilyMembers   Months Paid");
+	//	System.out.println("   Customer Id    Policy Id     Monthly premium    InsuranceAmount    Plan Duration    FamilyMembers   Months Paid");
 		while(rs.next())
 		{
-			if(rs.getString(1).equals(id)) {
+			if(rs.getString(2).equals(id)) {
 				long aadhaarNumber = rs.getLong(1);
 				String custId = rs.getString(2);
 				String policyId = rs.getString(3);

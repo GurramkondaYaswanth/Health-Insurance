@@ -8,12 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.healthInsurance.model.FamilyDetails;
+import com.healthInsurance.model.InsurancePolicy;
 import com.healthInsurance.model.PreExistingIllness;
 import com.healthInsurance.utility.ConnectionManagerMysql;
 
 public class PreExistingIllnessDao implements PreExistingIllnessDaoInterface {
-
+	PreExistingIllness preExistingIllness = new PreExistingIllness();
+	
 	@Override
 	public List<PreExistingIllness> viewPreExistingIllnessDetails() throws SQLException {
 		// TODO Auto-generated method stub
@@ -34,39 +35,37 @@ public class PreExistingIllnessDao implements PreExistingIllnessDaoInterface {
 
 	@Override
 	public List<PreExistingIllness> FilterPreExistingIllness(String id) throws SQLException {
+		
 		List<PreExistingIllness> preExistingIllnesslist=new ArrayList<PreExistingIllness>();
 		Connection con = ConnectionManagerMysql.getConnection();
 		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM pre_existing_illness ");
+		ResultSet rs = st.executeQuery("SELECT * FROM pre_existing_illness");
 		int d =1;
 		
-		System.out.println();
-		System.out.println("   Customer Id    Policy Id     Monthly premium    InsuranceAmount    Plan Duration    FamilyMembers   Months Paid");
+		System.out.println(id);
+		System.out.println("  Aadhaar Number Customer Id    Policy Id     Illness");
 		while(rs.next())
 		{
-			if(rs.getString(1).equals(id)) {
-				long aadhaarNumber = rs.getLong(1);
+			if(rs.getString(2).equals(id)) {
+				long aadhaarNum = rs.getLong(1);
 				String custId = rs.getString(2);
 				String policyId = rs.getString(3);
-				String Name = rs.getString(4);
-				String dob = rs.getString(5);
-//				
-//				familyDetails.setAadhaarNumber(aadhaarNumber);
-//				familyDetails.setCusId(custId);
-//				familyDetails.setPolicyId(policyId);
-//				familyDetails.setNames(Name);
-//				familyDetails.setDob(dob);
-//				
-//				FamilyDetailslist.add(familyDetails);
+				String illness = rs.getString(4);
 				
-				System.out.println("  aadhaarNumber  custId    policyId    Name    dob");
-				String familyDetailsBrief = d+". "+aadhaarNumber+"  "+custId+"    "+policyId+"    "+Name+"    "+dob+"    ";
+				preExistingIllness.setCusId(custId);
+				preExistingIllness.setAadhaarNumber(aadhaarNum);
+				preExistingIllness.setPolicyId(policyId);
+				preExistingIllness.setPreExistingIllness(illness);
+				preExistingIllnesslist.add(preExistingIllness);
+				
+				String preExistingIllnessBrief = d+". "+aadhaarNum+"  "+custId+"      "+policyId+"       "+illness+"    ";
 				d++;
-				System.out.println(familyDetailsBrief);
+				System.out.println(preExistingIllnessBrief);
 				
 			}
 		}
 		return preExistingIllnesslist;
+	
 	}
 
 	@Override
@@ -87,7 +86,7 @@ public class PreExistingIllnessDao implements PreExistingIllnessDaoInterface {
 		
 		int execution = ps.executeUpdate();
 		if(execution >0) {
-			System.out.println("Inserted succesfully");
+			System.out.println("Inserted succesfully pre_existing_illness");
 		}
 		
 	}

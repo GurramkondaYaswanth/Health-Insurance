@@ -12,6 +12,8 @@ import com.healthInsurance.utility.ConnectionManagerMysql;
 
 
 
+
+
 public class CustomerDao implements CustomerDaoInterface{
 
 	Customer customer = new Customer();
@@ -24,7 +26,32 @@ public class CustomerDao implements CustomerDaoInterface{
 
 	@Override
 	public void updateCustomerInfo(Customer customer) throws SQLException {
-		// TODO Auto-generated method stub
+		String Email = customer.getEmail();
+		String password = customer.getPassword();
+		String cusId = customer.getCusId();
+		String name = customer.getName();
+		String phoneNumber = customer.getPhoneNumber();
+		String address = customer.getAddress();
+		String customer_city = customer.getCustomer_city();
+		
+		Connection con = ConnectionManagerMysql.getConnection();
+		//System.out.println(name);
+		//access the string
+		PreparedStatement ps = con.prepareStatement("UPDATE customers SET customer_name= ?, customer_password=?, customer_address =?, customer_phonenumber = ?, customer_email = ?, customer_city=?  WHERE customer_id = ?");
+		ps.setString(1, name);
+		ps.setString(2, password);
+		ps.setString(3, address);
+		ps.setString(4, phoneNumber);
+		ps.setString(5, Email);
+		ps.setString(6, customer_city);
+		ps.setString(7, cusId);
+		
+		System.out.println("updating..");
+		int status = ps.executeUpdate();
+		
+		if(status >0) {
+			System.out.println("An existing data was updated successfully!");
+		}
 		
 	}
 
@@ -53,6 +80,10 @@ public class CustomerDao implements CustomerDaoInterface{
 				customer.setEmail(rs.getString(6));
 				customer.setCustomer_city(rs.getString(7));
 				
+				
+				System.out.println();
+				System.out.println("Customer Id     Name                    Password        Address                 phoneNumber    email          city");
+				System.out.println(customer.getCusId()+"   "+customer.getName()+"   "+customer.getPassword()+"   "+customer.getAddress()+"    "+customer.getPhoneNumber()+"    "+customer.getEmail()+"   "+customer.getCustomer_city()         );
 			}
 		}
 		

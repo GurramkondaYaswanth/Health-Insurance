@@ -29,30 +29,34 @@ public class InsuranceController {
 	CustomerDao customerDao = new CustomerDao();
 	FamilyDetailsDao familyDetailsDao = new FamilyDetailsDao();
 	PreExistingIllnessDao preExistingIllnessDao = new PreExistingIllnessDao();
+	ViewController viewController = new ViewController();
 	
 	public void InsuranceServices(Customer customer) {
 		
 		
-		String Custemail = customer.getEmail();
-		String CustomerId = null;
+		String custemail = customer.getEmail();
+		String customerId = null;
 		//getting the customer details
 		if(customer.getCusId() == null) {
 			try {
-				CustomerId = customerDao.FiltercustomerByEmail(Custemail).getCusId();
+				customerId = customerDao.FiltercustomerByEmail(custemail).getCusId();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
-			CustomerId = customer.getCusId();
+			customerId = customer.getCusId();
 		}
 		System.out.println();
 		System.out.println("           Health Insurance Policy");
 		System.out.println();
 		System.out.println("1. If you want to know about the details, technical terms and conditions of policy  ");
 		System.out.println("2. For the filling the policy details: ");
-		System.out.println("3. For viewing the applied policy details : ");
-		System.out.print("4. For viewing your profile : ");
+		System.out.println("3. For viewing the applied policy details or your profile : ");
+//		System.out.println("4. For viewing your profile : ");
+		
+		System.out.print("Enter Your option for Insurance service Type (1 or 2 or 3): ");
+		
 		int fillingTheForm = sc.nextInt();
 		
 		if(fillingTheForm == 1) {
@@ -140,15 +144,16 @@ public class InsuranceController {
 				System.out.print("Any PreExisting Illness of person use(comma after each illness)"+(i+1)+" : ");
 				preExistingIllness[i] = sc.nextLine();
 			}
-			
+			String policyId = idGeneration.IdGenPolicy(insurType,PlanDuration);
 			int monthspaid = 0;
 			insurancePolicy.setFamilyMembers(familyMembers);
 			insurancePolicy.setInsuranceAmount(insuranceAmount);
-			insurancePolicy.setCustId(CustomerId);
+			insurancePolicy.setCustId(customerId);
 			insurancePolicy.setFamilyMembers(familyMembers);
 			insurancePolicy.setMonthlyPremium(monthlyPremiumCost);
 			insurancePolicy.setNoOfMonths(PlanDuration*12);
 			insurancePolicy.setNoOfMonthsPaid(monthspaid);
+			insurancePolicy.setPolicyId(policyId);
 			
 			InsurancePolicyDao insurancePolicyDao = new InsurancePolicyDao();
 			try {
@@ -158,12 +163,12 @@ public class InsuranceController {
 				e1.printStackTrace();
 			}
 			
-			String policyId = idGeneration.IdGenPolicy(insurType,PlanDuration);
+			
 			
 			
 			for(int j=0; j<familyMembers; j++) {
 			familyDetails.setAadhaarNumber(aadhaarNumber[j]);
-			familyDetails.setCusId(CustomerId);
+			familyDetails.setCusId(customerId);
 			familyDetails.setDob(dob[j]);
 			familyDetails.setNames(names[j]);
 			familyDetails.setPolicyId(policyId);
@@ -182,57 +187,60 @@ public class InsuranceController {
 			policyStatus.setPolicyId(policyId);
 			
 			
+			
+		
+			
+			
 			for(int j=0; j<familyMembers; j++) {
 			PreExistingIllness preExistingIllnes = new PreExistingIllness();
 			preExistingIllnes.setAadhaarNumber(aadhaarNumber[j]);
-			preExistingIllnes.setCusId(CustomerId);
+			preExistingIllnes.setCusId(customerId);
 			preExistingIllnes.setPolicyId(policyId);
 			preExistingIllnes.setPreExistingIllness(preExistingIllness[j]);
 			
-			try {
-				preExistingIllnessDao.insertPreExistingIllnessInfo(preExistingIllnes);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+//			String allIllnessStr = preExistingIllness[j];
+//			String[] illnessArray = allIllnessStr.split(",");
+//			for(int k=0; k<illnessArray.length; j++) {
+				
+//				System.out.println(preExistingIllnes.getCusId());
+//				System.out.println(illnessArray[k]);
+				
+				try {
+					preExistingIllnessDao.insertPreExistingIllnessInfo(preExistingIllnes);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 			}
 			System.out.println();
+			
+			System.out.println("1. For viewing and updating any detail (one last time for changing any detail by You):");
+			System.out.println("2. Exit or logout):");
+			
+			System.out.print("Enter Your option for navigating (1 or 2 ): ");
+			
+			int nav = sc.nextInt();
+			if(nav == 1) {
+//				viewController.viewDetails(customerId);
+				UpdateController updateController = new UpdateController();
+				updateController.updateDetails(customerId);
+				
+			}
 			System.out.println("***** Thank You For applying the Insurance. Pay monthly Premium: "+monthlyPremiumCost+ " every month regularly for "+PlanDuration+" year "+ "for Claiming insurance of "+insuranceAmount+" *****  ");
+		 
+			
 			
 		}else if(fillingTheForm == 3) {
-			System.out.println();
-			System.out.println("1. viewing the policy details ");
-			System.out.println("2. viewing the Family member details ");
-			System.out.println("3. viewing the Family member preexisting illness ");
-			System.out.print("Enter Your option for viewing the details (1 or 2 or 3): ");
-			int viewType = sc.nextInt();
 			
-			if(viewType == 1) {
-				InsurancePolicyDao insurancePolicyDao = new InsurancePolicyDao();
-				try {
-					insurancePolicyDao.filterInsurancePolicy(CustomerId);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else if(viewType == 2) {
-				FamilyDetailsDao familyDetailsDao = new FamilyDetailsDao();
-				try {
-					familyDetailsDao.filterFamilyDetails(CustomerId);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else if(viewType == 3) {
-				InsurancePolicyDao insurancePolicyDao = new InsurancePolicyDao();
-				try {
-					insurancePolicyDao.viewInsurancePolicyDetails();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			viewController.viewDetails(customerId);
 		}
+		
+//		else if(fillingTheForm == 4) {
+//			UpdateController updateController = new UpdateController();
+//			updateController.updateDetails(customerId);
+//		}
 	}
 
 }

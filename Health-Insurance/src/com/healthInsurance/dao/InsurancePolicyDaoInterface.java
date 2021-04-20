@@ -16,6 +16,5 @@ public interface InsurancePolicyDaoInterface {
 	 List<InsurancePolicy> filterInsurancePolicy(String id) throws SQLException;
 //	 InsurancePolicy filterInsurancePolicyBy(String email) throws SQLException;
 	 void insertInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
-	 
 
 }
