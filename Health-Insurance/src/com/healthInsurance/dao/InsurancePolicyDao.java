@@ -19,7 +19,7 @@ public class InsurancePolicyDao implements InsurancePolicyDaoInterface{
 
 	@Override
 	public List<InsurancePolicy> viewInsurancePolicyDetails() throws SQLException {
-		List<InsurancePolicy> list=new ArrayList<InsurancePolicy>();
+		List<InsurancePolicy> insurancePolicylist=new ArrayList<InsurancePolicy>();
 		
 		Connection con = ConnectionManagerMysql.getConnection();  //connection establishment
 		Statement st = con.createStatement();
@@ -44,7 +44,7 @@ public class InsurancePolicyDao implements InsurancePolicyDaoInterface{
 			insurancePolicy.setNoOfMonths(planDuration);
 			insurancePolicy.setNoOfMonthsPaid(monthsPaid);
 			insurancePolicy.setPolicyId(policyId);
-			list.add(insurancePolicy);
+			insurancePolicylist.add(insurancePolicy);
 			
 //			int spaces = 20- (name.length());  
 //			int spaces1 = 23 - (date.length());
@@ -60,12 +60,12 @@ public class InsurancePolicyDao implements InsurancePolicyDaoInterface{
 //				place = place + " "; 
 //			}
 			
-			String diseaseBrief = d+". "+custId+"    "+policyId+"    "+monthlyPremium+"    "+insuranceAmount+"    "+planDuration+"    "+familyMembers+"    "+monthsPaid;
+			String InsurancepolicyBrief = d+". "+custId+"    "+policyId+"    "+monthlyPremium+"    "+insuranceAmount+"    "+planDuration+"    "+familyMembers+"    "+monthsPaid;
 			d++;
-			System.out.println(diseaseBrief);
+			System.out.println(InsurancepolicyBrief);
 			
 		}
-		return list;
+		return insurancePolicylist;
 	}
 
 	@Override
@@ -80,11 +80,6 @@ public class InsurancePolicyDao implements InsurancePolicyDaoInterface{
 		
 	}
 
-	@Override
-	public InsurancePolicy FilterInsurancePolicy(String id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void insertInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException {
@@ -110,5 +105,47 @@ public class InsurancePolicyDao implements InsurancePolicyDaoInterface{
 		}
 		
 	}
+
+	@Override
+	public List<InsurancePolicy> filterInsurancePolicy(String id) throws SQLException {
+		// TODO Auto-generated method stub
+		List<InsurancePolicy> insurancePolicylist=new ArrayList<InsurancePolicy>();
+		Connection con = ConnectionManagerMysql.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM insurance_policy");
+		int d =1;
+		
+		System.out.println();
+		System.out.println("   Customer Id    Policy Id     Monthly premium    InsuranceAmount    Plan Duration    FamilyMembers   Months Paid");
+		while(rs.next())
+		{
+			if(rs.getString(1).equals(id)) {
+				String custId = rs.getString(1);
+				String policyId = rs.getString(2);
+				int monthlyPremium = rs.getInt(3);
+				long insuranceAmount = rs.getInt(4);
+				int planDuration = rs.getInt(5);
+				int familyMembers = rs.getInt(6);
+				int monthsPaid = rs.getInt(7);
+				
+				insurancePolicy.setCustId(custId);
+				insurancePolicy.setFamilyMembers(familyMembers);
+				insurancePolicy.setInsuranceAmount(insuranceAmount);
+				insurancePolicy.setMonthlyPremium(monthlyPremium);
+				insurancePolicy.setNoOfMonths(planDuration);
+				insurancePolicy.setNoOfMonthsPaid(monthsPaid);
+				insurancePolicy.setPolicyId(policyId);
+				insurancePolicylist.add(insurancePolicy);
+				
+				String InsurancepolicyBrief = d+". "+custId+"    "+policyId+"    "+monthlyPremium+"    "+insuranceAmount+"    "+planDuration+"    "+familyMembers+"    "+monthsPaid;
+				d++;
+				System.out.println(InsurancepolicyBrief);
+				
+			}
+		}
+		return insurancePolicylist;
+	}
+
+
 
 }

@@ -29,7 +29,7 @@ public class ConnectionManagerMysql {
 		}
 		
 		if(con == null)
-			System.out.println("connection established");
+			System.out.println("connection not established");
 		
 		return con;
 		

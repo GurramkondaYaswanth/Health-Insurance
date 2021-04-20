@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.healthInsurance.model.FamilyDetails;
+import com.healthInsurance.model.InsurancePolicy;
 import com.healthInsurance.utility.ConnectionManagerMysql;
 
 
@@ -23,13 +24,45 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 		
 		Connection con = ConnectionManagerMysql.getConnection();  //connection establishment
 		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM FamilyDetails");  //Sql query
+		ResultSet rs = st.executeQuery("SELECT * FROM family_members_details ");  //Sql query
 		int d =1;
 		System.out.println();
 	
+		System.out.println();
+		System.out.println("  Aadhaar Number   Customer Id    Policy Id     Name    Date of birth");
 		while(rs.next())
 		{
-
+			long aadhaarNumber = rs.getLong(1);
+			String custId = rs.getString(2);
+			String policyId = rs.getString(3);
+			String Name = rs.getString(4);
+			String dob = rs.getString(5);
+			
+			familyDetails.setAadhaarNumber(aadhaarNumber);
+			familyDetails.setCusId(custId);
+			familyDetails.setPolicyId(policyId);
+			familyDetails.setNames(Name);
+			familyDetails.setDob(dob);
+			
+			list.add(familyDetails);
+			
+//			int spaces = 20- (name.length());  
+//			int spaces1 = 23 - (date.length());
+//			int spaces2 = 20- (place.length());
+//			
+//			for(int i=0; i<spaces; i++) {
+//				name = name + " "; 
+//			}
+//			for(int j=0; j<spaces1; j++) {
+//				date = date + " "; 
+//			}
+//			for(int k=0; k<spaces2; k++) {
+//				place = place + " "; 
+//			}
+			System.out.println("  aadhaarNumber  custId    policyId    Name    dob");
+			String familyDetailsBrief = d+". "+aadhaarNumber+"  "+custId+"    "+policyId+"    "+Name+"    "+dob+"    ";
+			d++;
+			System.out.println(familyDetailsBrief);
 			
 		}
 		return list;
@@ -58,9 +91,40 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	}
 
 	@Override
-	public FamilyDetails FilterFamilyDetails(String id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FamilyDetails> filterFamilyDetails(String id) throws SQLException {
+		List<FamilyDetails> FamilyDetailslist=new ArrayList<FamilyDetails>();
+		Connection con = ConnectionManagerMysql.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM family_members_details ");
+		int d =1;
+		
+		System.out.println();
+		System.out.println("   Customer Id    Policy Id     Monthly premium    InsuranceAmount    Plan Duration    FamilyMembers   Months Paid");
+		while(rs.next())
+		{
+			if(rs.getString(1).equals(id)) {
+				long aadhaarNumber = rs.getLong(1);
+				String custId = rs.getString(2);
+				String policyId = rs.getString(3);
+				String Name = rs.getString(4);
+				String dob = rs.getString(5);
+				
+				familyDetails.setAadhaarNumber(aadhaarNumber);
+				familyDetails.setCusId(custId);
+				familyDetails.setPolicyId(policyId);
+				familyDetails.setNames(Name);
+				familyDetails.setDob(dob);
+				
+				FamilyDetailslist.add(familyDetails);
+				
+				System.out.println("  aadhaarNumber  custId    policyId    Name    dob");
+				String familyDetailsBrief = d+". "+aadhaarNumber+"  "+custId+"    "+policyId+"    "+Name+"    "+dob+"    ";
+				d++;
+				System.out.println(familyDetailsBrief);
+				
+			}
+		}
+		return FamilyDetailslist;
 	}
 
 	@Override

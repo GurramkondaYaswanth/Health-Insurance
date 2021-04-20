@@ -13,7 +13,8 @@ public interface InsurancePolicyDaoInterface {
 	 List<InsurancePolicy> viewInsurancePolicyDetails() throws SQLException;
 	 void updateInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
 	 void deleteInsurancePolicyInfo(String id) throws SQLException;
-	 InsurancePolicy FilterInsurancePolicy(String id) throws SQLException;
+	 List<InsurancePolicy> filterInsurancePolicy(String id) throws SQLException;
+//	 InsurancePolicy filterInsurancePolicyBy(String email) throws SQLException;
 	 void insertInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
 	 
 

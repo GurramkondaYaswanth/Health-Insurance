@@ -49,7 +49,10 @@ public class InsuranceController {
 		System.out.println();
 		System.out.println("           Health Insurance Policy");
 		System.out.println();
-		System.out.print("If you want to know about the details, technical terms and conditions of policy Enter 1 or Enter 2 for the filling the details of policy: ");
+		System.out.println("1. If you want to know about the details, technical terms and conditions of policy  ");
+		System.out.println("2. For the filling the policy details: ");
+		System.out.println("3. For viewing the applied policy details : ");
+		System.out.print("4. For viewing your profile : ");
 		int fillingTheForm = sc.nextInt();
 		
 		if(fillingTheForm == 1) {
@@ -195,9 +198,40 @@ public class InsuranceController {
 			}
 			System.out.println();
 			System.out.println("***** Thank You For applying the Insurance. Pay monthly Premium: "+monthlyPremiumCost+ " every month regularly for "+PlanDuration+" year "+ "for Claiming insurance of "+insuranceAmount+" *****  ");
-		 
 			
+		}else if(fillingTheForm == 3) {
+			System.out.println();
+			System.out.println("1. viewing the policy details ");
+			System.out.println("2. viewing the Family member details ");
+			System.out.println("3. viewing the Family member preexisting illness ");
+			System.out.print("Enter Your option for viewing the details (1 or 2 or 3): ");
+			int viewType = sc.nextInt();
 			
+			if(viewType == 1) {
+				InsurancePolicyDao insurancePolicyDao = new InsurancePolicyDao();
+				try {
+					insurancePolicyDao.filterInsurancePolicy(CustomerId);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if(viewType == 2) {
+				FamilyDetailsDao familyDetailsDao = new FamilyDetailsDao();
+				try {
+					familyDetailsDao.filterFamilyDetails(CustomerId);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if(viewType == 3) {
+				InsurancePolicyDao insurancePolicyDao = new InsurancePolicyDao();
+				try {
+					insurancePolicyDao.viewInsurancePolicyDetails();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
