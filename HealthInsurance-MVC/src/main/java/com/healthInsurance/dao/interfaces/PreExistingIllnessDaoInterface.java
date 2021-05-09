@@ -10,8 +10,8 @@ import com.healthInsurance.model.PreExistingIllness;
 public interface PreExistingIllnessDaoInterface {
 	
 	 List<PreExistingIllness> viewPreExistingIllnessDetails() throws SQLException;
-	 void updatePreExistingIllnessInfo(PreExistingIllness preExistingIllness) throws SQLException;
-	 void deletePreExistingIllnessInfo(String id) throws SQLException;
+	 boolean updatePreExistingIllnessInfo(PreExistingIllness preExistingIllness) throws SQLException;
+	 boolean deletePreExistingIllnessInfo(String id) throws SQLException;
 	 List<PreExistingIllness> FilterPreExistingIllness(String id) throws SQLException;
-	 void insertPreExistingIllnessInfo(PreExistingIllness preExistingIllness) throws SQLException;
+	 boolean insertPreExistingIllnessInfo(PreExistingIllness preExistingIllness) throws SQLException;
 }

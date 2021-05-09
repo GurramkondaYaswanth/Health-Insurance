@@ -29,4 +29,54 @@
     <servlet-name>SignupServlet</servlet-name>
     <url-pattern>/SignupServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HomeServlet</display-name>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>com.healthInsurance.controller.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/HomeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewServlet</display-name>
+    <servlet-name>ViewServlet</servlet-name>
+    <servlet-class>com.healthInsurance.controller.ProfileViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewServlet</servlet-name>
+    <url-pattern>/View</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PolicyViewServlet</display-name>
+    <servlet-name>PolicyViewServlet</servlet-name>
+    <servlet-class>com.healthInsurance.controller.PolicyViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PolicyViewServlet</servlet-name>
+    <url-pattern>/PolicyView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FamilyDetailsViewServlet</display-name>
+    <servlet-name>FamilyDetailsViewServlet</servlet-name>
+    <servlet-class>com.healthInsurance.controller.FamilyDetailsViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FamilyDetailsViewServlet</servlet-name>
+    <url-pattern>/FamilyDetailsView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CompanyPoliciesViewServlet</display-name>
+    <servlet-name>CompanyPoliciesViewServlet</servlet-name>
+    <servlet-class>com.healthInsurance.controller.CompanyInsurPoliciesViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CompanyPoliciesViewServlet</servlet-name>
+    <url-pattern>/CompanyPoliciesView</url-pattern>
+  </servlet-mapping>
 </web-app>

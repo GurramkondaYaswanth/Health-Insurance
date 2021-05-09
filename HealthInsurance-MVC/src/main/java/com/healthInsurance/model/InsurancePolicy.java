@@ -23,8 +23,29 @@ public class InsurancePolicy {
 	private boolean PolicyActive;
 	
 	
+	public InsurancePolicyId getInsurancePolicyId() {
+		return insurancePolicyId;
+	}
+
+	public void setInsurancePolicyId(InsurancePolicyId insurancePolicyId) {
+		this.insurancePolicyId = insurancePolicyId;
+	}
+
+	public InsurancePolicy() {
+		
+	}
 	
-	
+	public InsurancePolicy(InsurancePolicyId insurancePolicyId, int familyMembers, long insuranceAmount, int noOfMonths,
+			long monthlyPremium, int noOfMonthsPaid, boolean policyActive) {
+		super();
+		this.insurancePolicyId = insurancePolicyId;
+		this.familyMembers = familyMembers;
+		this.insuranceAmount = insuranceAmount;
+		this.noOfMonths = noOfMonths;
+		this.monthlyPremium = monthlyPremium;
+		this.noOfMonthsPaid = noOfMonthsPaid;
+		PolicyActive = policyActive;
+	}
 	public boolean isPolicyActive() {
 		return PolicyActive;
 	}

@@ -11,10 +11,10 @@ import com.healthInsurance.model.InsurancePolicy;
 
 public interface InsurancePolicyDaoInterface {
 	 List<InsurancePolicy> viewInsurancePolicyDetails() throws SQLException;
-	 void updateInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
-	 void deleteInsurancePolicyInfo(String id) throws SQLException;
+	 boolean updateInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
+	 boolean deleteInsurancePolicyInfo(String id) throws SQLException;
 	 List<InsurancePolicy> filterInsurancePolicy(String id) throws SQLException;
 //	 InsurancePolicy filterInsurancePolicyBy(String email) throws SQLException;
-	 void insertInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
+	 boolean insertInsurancePolicyInfo(InsurancePolicy insurancePolicy) throws SQLException;
 
 }

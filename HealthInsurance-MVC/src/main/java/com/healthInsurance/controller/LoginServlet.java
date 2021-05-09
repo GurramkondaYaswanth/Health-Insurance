@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.healthInsurance.model.Customer;
 
@@ -50,7 +51,9 @@ public class LoginServlet extends HttpServlet {
 
 		
 		PrintWriter pw=response.getWriter();
-	       
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("Custemail",email);
         
         if(cusLogin) {
         	pw.println("success");

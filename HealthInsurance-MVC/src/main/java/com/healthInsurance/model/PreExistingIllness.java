@@ -47,7 +47,13 @@ public class PreExistingIllness {
 //	public void setAadhaarNumber(long aadhaarNumber) {
 //		this.aadhaarNumber = aadhaarNumber;
 //	}
-	
+	public PreExistingIllness(IllnessIdentity illnessIdentity) {
+		super();
+		this.illnessIdentity = illnessIdentity;
+	}
+	public PreExistingIllness() {
+		
+	}
 	
 
 }

@@ -8,12 +8,13 @@ import javax.persistence.Table;
 @Table (name="company_policies")
 public class CompanyPolicies {
 	
+
 	@Id
 	private String policyId;
 	private int policyDuration;
 	private int percentageToBePaid;
 	private String policyBrief;
-	
+//	private String policyType;
 	
 	
 	public int getPercentageToBePaid() {
@@ -40,6 +41,18 @@ public class CompanyPolicies {
 	}
 	public void setPolicyBrief(String policyBrief) {
 		this.policyBrief = policyBrief;
+	}
+	
+	public CompanyPolicies(String policyId, int policyDuration, int percentageToBePaid, String policyBrief) {
+		super();
+		this.policyId = policyId;
+		this.policyDuration = policyDuration;
+		this.percentageToBePaid = percentageToBePaid;
+		this.policyBrief = policyBrief;
+	}
+	
+	public CompanyPolicies() {
+		
 	}
 	
 	

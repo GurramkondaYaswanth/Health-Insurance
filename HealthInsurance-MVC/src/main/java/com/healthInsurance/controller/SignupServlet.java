@@ -3,10 +3,12 @@ package com.healthInsurance.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.healthInsurance.bussinesslogic.IdGeneration;
 import com.healthInsurance.dao.impl.SignupDaoImpl;
@@ -47,6 +49,9 @@ public class SignupServlet extends HttpServlet {
 		  customer.setName(name);
 		  customer.setPhoneNumber(phoneNumber);
 		  customer.setCusId(idGeneration.IdGenUser());
+		  
+		  HttpSession session = request.getSession();
+		  session.setAttribute("CustemailSignup",email);
 		 
 		  boolean cusSignup = false;
 		  SignupDaoImpl signupDao = new SignupDaoImpl();
@@ -57,6 +62,21 @@ public class SignupServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		  
+	      if(cusSignup) {
+	        
+
+	        	  
+	             // Creating a RequestDispatcher object to dispatch
+	             // the request the request to another resource
+	               RequestDispatcher rd = 
+	                   request.getRequestDispatcher("jsp/Home.jsp");
+
+	        
+	          }else { 
+	        	  System.out.println("invalid credentials");
+	                	response.sendRedirect("html/Signup.html");
+	          }
 		  
 		  
 	}

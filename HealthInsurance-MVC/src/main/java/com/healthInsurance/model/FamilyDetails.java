@@ -23,7 +23,7 @@ public class FamilyDetails {
 	private String names;
 	private String gender;
 	
-	 
+	
 //	@JoinColumn(name="Fid")  
 	@OneToMany(cascade = CascadeType.ALL) 
 	private List<PreExistingIllness> preExistingIllness; 
@@ -69,6 +69,25 @@ public class FamilyDetails {
 	}
 	public void setFamilyMemberId(FamilyMemberId familyMemberId) {
 		this.familyMemberId = familyMemberId;
+	}
+	public List<PreExistingIllness> getPreExistingIllness() {
+		return preExistingIllness;
+	}
+	public void setPreExistingIllness(List<PreExistingIllness> preExistingIllness) {
+		this.preExistingIllness = preExistingIllness;
+	}
+	public FamilyDetails(FamilyMemberId familyMemberId, String dob, String names, String gender,
+			List<PreExistingIllness> preExistingIllness) {
+		super();
+		this.familyMemberId = familyMemberId;
+		this.dob = dob;
+		this.names = names;
+		this.gender = gender;
+		this.preExistingIllness = preExistingIllness;
+	}
+	
+	public FamilyDetails() {
+		
 	}
 	
 	

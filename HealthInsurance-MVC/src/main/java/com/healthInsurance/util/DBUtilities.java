@@ -33,7 +33,7 @@ public class DBUtilities {
 	        factory = configuration.buildSessionFactory(serviceRegistry);
 	        
 	        session = factory.openSession();
-	        System.out.println("sessio in created");
+	        System.out.println("session in created");
 	        
 	        //session = factory.getCurrentSession();
 		

@@ -20,12 +20,21 @@ import com.healthInsurance.util.DBUtilities;
 
 public class SigninDaoImpl implements SigninDaoInterface{
 	
-	static Session session = DBUtilities.getSession();
+	static Session session; 
 	Transaction tsn;
 
 	@Override
 	public boolean Customerlogin(Customer customer) throws SQLException {
-		 tsn=session.beginTransaction();
+		
+		try {
+			session = DBUtilities.getSession();
+			 tsn=session.beginTransaction();
+		}
+		catch (RuntimeException e) {
+			session.getTransaction().rollback();
+		    throw e;
+		}
+		
 		 Query query=session.createQuery("from Customer");
 		 List<Customer> customerlist=query.list();
 		 Iterator<Customer> itr=customerlist.iterator();
@@ -37,6 +46,8 @@ public class SigninDaoImpl implements SigninDaoInterface{
 				 return true;
 			 }
 		 }
+		 
+	
 		 return false;
 		
 //		Query query =  session.createQuery("from Customer customer");
