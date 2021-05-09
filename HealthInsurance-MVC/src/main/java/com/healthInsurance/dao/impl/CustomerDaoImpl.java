@@ -24,15 +24,15 @@ import com.healthInsurance.util.DBUtilities;
 
 public class CustomerDaoImpl implements CustomerDaoInterface{
 	
-	static Session session = DBUtilities.getSession();
+	static Session session = DBUtilities.getSession();;
 	Transaction tsn;
-	//= DBUtilities.getSession();
+	// = DBUtilities.getSession();; 
 	@Override
 	public List<Customer> viewCustomerDetails() throws SQLException {
 		
 		
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -47,7 +47,7 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 //			 Course course =(Course)itr.next();
 //			 System.out.println(course.getCourseId()+"\t"+course.getCourseName()+"\t"+course.getCourseStrength());		 
 //		 }
-		 session.close();
+//		 session.close();
 		 return customers;
 		
 		
@@ -83,7 +83,7 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 	@Override
 	public void deleteCustomerInfo(String id) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -93,7 +93,7 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 		Customer customer = (Customer) session.load(Customer.class, id);
 		 session.delete(customer);
 		 tsn.commit();
-		 session.close();
+//		 session.close();
 		
 		
 	}
@@ -102,14 +102,14 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 	public Customer Filtercustomer(String id) throws SQLException {
 		try {
 //			session = DBUtilities.getSession();
-			 tsn=session.beginTransaction();
+//			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
 			session.getTransaction().rollback();
 		    throw e;
 		}
 		Customer customer = (Customer) session.load(Customer.class, id);
-		tsn.commit();
+//		tsn.commit();
 //		session.close();
 		 return customer;
 	}
@@ -118,7 +118,7 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 	public boolean insertCustomerInfo(Customer customer) throws SQLException {
 		boolean flag = false;
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -129,17 +129,17 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 		 tsn.commit(); //save permanently into the database
 		  flag=true;
 		 System.out.println("Inserted the record successfully.............");
-		 session.close();
+//		 session.close();
 		 return flag;
 	
 		
 	}
 
 	@Override
-	public Customer FiltercustomerByEmail(String email) throws SQLException {
+	public Customer FiltercustomerByEmail(String email , String password) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
-			 tsn=session.beginTransaction();
+//			session = DBUtilities.getSession();
+//			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
 			session.getTransaction().rollback();
@@ -152,15 +152,17 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 		 
 		 while(itr.hasNext()) {
 			 Customer custDb =(Customer)itr.next();
-			 if(custDb.getEmail().equalsIgnoreCase(email) ) {
+			 if(custDb.getEmail().equalsIgnoreCase(email) && custDb.getPassword().equalsIgnoreCase(password)) {
 //				 System.out.println(custDb.getPassword());
 				 return custDb;
 			 }
 		 }
+		 
+		 
 		return null;
 	}
 	
-//	public static void main(String[] args) {
+	public static void main(String[] args) {
 //		Customer customer = new Customer();
 ////		customer.setCusId("2105051730");
 ////		customer.setAddress("tirupati,Andhra pradesh");
@@ -170,13 +172,14 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 ////		customer.setPhoneNumber("9110365727");
 ////		customer.setEmail("gurram@gmail.com");
 //		
-//		CustomerDaoImpl customerDaoImpl = new CustomerDaoImpl();
-//		try {
+		CustomerDaoImpl customerDaoImpl = new CustomerDaoImpl();
+		try {
+			customerDaoImpl.deleteCustomerInfo("2109051651");
 //			customer = customerDaoImpl.Filtercustomer("2105051730");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		customer.setEmail("gurram@gmail.com");
 //		InsurancePolicy insurancePolicy = new InsurancePolicy();
 //		InsurancePolicyId insurancePolicyId = new InsurancePolicyId("2105051730","210422");
@@ -253,14 +256,14 @@ public class CustomerDaoImpl implements CustomerDaoInterface{
 //		
 ////		
 ////		FamilyDetailsDao familyDetailsDao = new FamilyDetailsDao();
-////		try {
-////			familyDetailsDao.insertFamilyDetailsInfo(familyDetails1);
-////			familyDetailsDao.insertFamilyDetailsInfo(familyDetails2);
-////		} catch (SQLException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		}
-//	}
+//		try {
+//			familyDetailsDao.insertFamilyDetailsInfo(familyDetails1);
+//			familyDetailsDao.insertFamilyDetailsInfo(familyDetails2);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
 //
 }
 

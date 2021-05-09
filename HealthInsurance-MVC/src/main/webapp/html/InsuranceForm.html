@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insurance Form </title>
+</head>
+<body>
+
+<form name="insuranceForm" method="post" action="../InsurancePolicyApply">
+<table>
+<tr>
+	<td>Insurance Type</td>
+  <td>
+  <input type="radio"  name="InsuranceType" value=1>
+  <label for="Health">Health</label>
+  <input type="radio"  name="InsuranceType" value=2 checked>
+  <label for="HealthDeath" >Health+Death</label><br>
+   </td>
+  </tr>
+  
+  <tr>
+  <td>Paying Duration</td>
+  <td>  
+    <label class="radio-inline">
+      <input type="radio" name="PayDuration" value=1 checked>1 Year
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="PayDuration" value=2 >2 Year
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="PayDuration" value=5 >5 Year
+    </label>
+    </td>
+  </tr>
+  
+ <tr><td> Insurance Amount (Min: 2,00,000 Max:10,00,000)</td>
+  <td><input type="number" name="InsuranceAmount"/></td>
+  </tr>
+
+  <tr><td> Family Members (you want include in policy (max:6))</td>
+  <td><input type="number" name="FamilyMembers"/></td>
+  </tr>
+   
+	
+  <tr><td><input type="submit" value="Submit"/></td>
+  </tr>
+  </table>
+</form>
+
+ <a href="http://localhost:8090/HealthInsurance-MVC/jsp/Home.jsp">Home Page</a>
+
+</body>
+</html>

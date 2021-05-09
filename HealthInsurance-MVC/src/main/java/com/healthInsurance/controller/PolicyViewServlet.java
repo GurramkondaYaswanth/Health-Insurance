@@ -38,14 +38,16 @@ private void PolicyView(HttpServletRequest request, HttpServletResponse response
 		
 	HttpSession session = request.getSession();
 	String email = (String) session.getAttribute("Custemail");
-	if(email.isEmpty()) {
+	Customer customer =  (Customer) session.getAttribute("Customer");
+	if(email == null) {
 		email = (String) session.getAttribute("CustemailSignup");
+		customer =  (Customer) session.getAttribute("CustomerSignup");
 	}
 		System.out.println("email :"+email);
 		CustomerDaoImpl customerDaoImpl = new CustomerDaoImpl();
 		Customer customerDetails;
 		try {
-			customerDetails = customerDaoImpl.FiltercustomerByEmail(email);
+			customerDetails = customerDaoImpl.FiltercustomerByEmail(email,customer.getPassword());
 			
 			request.setAttribute("InsurancePolicylist", customerDetails.getInsurancePolicy());
       	  

@@ -18,13 +18,13 @@ import com.healthInsurance.util.DBUtilities;
 
 public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	
-	static Session session;
+	static Session session=DBUtilities.getSession();
 	Transaction tsn;
 
 	@Override
 	public List<FamilyDetails> viewFamilyDetails() throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -40,7 +40,7 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	@Override
 	public void updateFamilyDetailsInfo(FamilyDetails familyDetails) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -57,14 +57,14 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	
 		 session.update(familyDetailsyDb);
 		 tsn.commit();
-		 session.close();
+//		 session.close();
 		
 	}
 
 	@Override
 	public void deleteFamilyDetailsInfo(FamilyMemberId familyMemberId) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -81,7 +81,7 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	@Override
 	public FamilyDetails filterFamilyDetails(FamilyMemberId familyMemberId) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -98,7 +98,7 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	@Override
 	public boolean insertFamilyDetailsInfo(FamilyDetails familyDetails) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {
@@ -109,7 +109,7 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 		 tsn.commit(); //save permanently into the database
 		 boolean flag=true;
 		 System.out.println("Inserted the record successfully.............");
-		 session.close();
+//		 session.close();
 		 return flag;
 		
 	}
@@ -123,7 +123,7 @@ public class FamilyDetailsDao implements FamilyDetailsDaoInterface{
 	@Override
 	public List<FamilyDetails> filterFamilyDetails(String id) throws SQLException {
 		try {
-			session = DBUtilities.getSession();
+//			session = DBUtilities.getSession();
 			 tsn=session.beginTransaction();
 		}
 		catch (RuntimeException e) {

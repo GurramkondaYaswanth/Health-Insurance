@@ -13,7 +13,8 @@ public interface CustomerDaoInterface {
 	 void deleteCustomerInfo(String id) throws SQLException;
 	 Customer Filtercustomer(String id) throws SQLException;
 	 boolean insertCustomerInfo(Customer customer) throws SQLException;
-	Customer FiltercustomerByEmail(String email) throws SQLException;
+//	Customer FiltercustomerByEmail(String email) throws SQLException;
+	Customer FiltercustomerByEmail(String email, String password) throws SQLException;
 	
 
 }

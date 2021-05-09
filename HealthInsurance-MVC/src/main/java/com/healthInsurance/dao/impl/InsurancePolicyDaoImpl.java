@@ -9,12 +9,14 @@ import org.hibernate.Transaction;
 
 import com.healthInsurance.dao.interfaces.InsurancePolicyDaoInterface;
 import com.healthInsurance.model.FamilyDetails;
+import com.healthInsurance.model.FamilyMemberId;
 import com.healthInsurance.model.InsurancePolicy;
+import com.healthInsurance.model.InsurancePolicyId;
 import com.healthInsurance.util.DBUtilities;
 
 public class InsurancePolicyDaoImpl implements InsurancePolicyDaoInterface{
 	
-	static Session session;
+	static Session session = DBUtilities.getSession();;
 	Transaction tsn;
 
 	@Override
@@ -29,7 +31,7 @@ public class InsurancePolicyDaoImpl implements InsurancePolicyDaoInterface{
 		}
 		 Query query=session.createQuery("from InsurancePolicy");
 		 List<InsurancePolicy> insurancepolicylist =query.list();
-		 session.close();
+//		 session.close();
 		 return insurancepolicylist;
 	}
 
@@ -40,9 +42,21 @@ public class InsurancePolicyDaoImpl implements InsurancePolicyDaoInterface{
 	}
 
 	@Override
-	public boolean deleteInsurancePolicyInfo(String id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteInsurancePolicyInfo(InsurancePolicyId insurancePolicyId) throws SQLException {
+		try {
+//			session = DBUtilities.getSession();
+			 tsn=session.beginTransaction();
+		}
+		catch (RuntimeException e) {
+			session.getTransaction().rollback();
+		    throw e;
+		}
+		InsurancePolicy insurancePolicy = (InsurancePolicy) session.load(InsurancePolicy.class, insurancePolicyId);
+		 session.delete(insurancePolicy);
+		 tsn.commit();
+//		 session.close();
+		 
+		 return true;
 	}
 
 	@Override
@@ -67,6 +81,17 @@ public class InsurancePolicyDaoImpl implements InsurancePolicyDaoInterface{
 		 System.out.println("Inserted the record successfully.............");
 		 session.close();
 		 return flag;
+	}
+	
+	public static void main(String[] args) {
+		InsurancePolicyDaoImpl insurancePolicyDaoImpl = new InsurancePolicyDaoImpl();
+		InsurancePolicyId insurancePolicyId = new InsurancePolicyId("2109052323","210525");
+		try {
+			insurancePolicyDaoImpl.deleteInsurancePolicyInfo(insurancePolicyId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

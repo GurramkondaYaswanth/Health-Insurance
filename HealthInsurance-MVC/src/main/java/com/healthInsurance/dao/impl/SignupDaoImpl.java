@@ -28,6 +28,8 @@ public class SignupDaoImpl implements SignupDaoInterface{
 			session.getTransaction().rollback();
 		    throw e;
 		}
+		
+		
 		 session.save(customer); //persistent state
 		 tsn.commit(); //save permanently into the database
 		  flag=true;

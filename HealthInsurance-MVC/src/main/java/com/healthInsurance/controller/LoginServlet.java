@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("Custemail",email);
-        
+		session.setAttribute("Customer",customer);
         if(cusLogin) {
         	pw.println("success");
 //        	CourseDaoImplementation courseDaoImplementation = new CourseDaoImplementation();

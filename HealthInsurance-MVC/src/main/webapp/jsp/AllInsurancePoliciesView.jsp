@@ -56,5 +56,7 @@
 
 </div>
 
+ <a href="http://localhost:8090/HealthInsurance-MVC/jsp/Home.jsp">Home Page</a>
+
 </body>
 </html>

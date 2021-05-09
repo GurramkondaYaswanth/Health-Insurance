@@ -79,4 +79,34 @@
     <servlet-name>CompanyPoliciesViewServlet</servlet-name>
     <url-pattern>/CompanyPoliciesView</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsurancePolicyApply</display-name>
+    <servlet-name>InsurancePolicyApply</servlet-name>
+    <servlet-class>com.healthInsurance.controller.InsurancePolicyApply</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsurancePolicyApply</servlet-name>
+    <url-pattern>/InsurancePolicyApply</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FamilyDetailsInsert</display-name>
+    <servlet-name>FamilyDetailsInsert</servlet-name>
+    <servlet-class>com.healthInsurance.controller.FamilyDetailsInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FamilyDetailsInsert</servlet-name>
+    <url-pattern>/FamilyDetailsInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CalculateMonthlyPremium</display-name>
+    <servlet-name>CalculateMonthlyPremium</servlet-name>
+    <servlet-class>com.healthInsurance.controller.CalculateMonthlyPremium</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalculateMonthlyPremium</servlet-name>
+    <url-pattern>/CalculateMonthlyPremium</url-pattern>
+  </servlet-mapping>
 </web-app>

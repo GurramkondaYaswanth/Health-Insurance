@@ -33,6 +33,6 @@ custDetails = (Customer) request.getAttribute("customerDetails");
 </table>
 
 
- <a href="${pageContext.request.contextPath}/jsp/Home.jsp">Home Page</a>
+ <a href="http://localhost:8090/HealthInsurance-MVC/jsp/Home.jsp">Home Page</a>
 </body>
 </html>

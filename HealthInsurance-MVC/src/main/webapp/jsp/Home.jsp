@@ -11,10 +11,12 @@
 	 <nav>
         <div>Life Health Insurance</div>
         <ul>
+        	<li> <a href="${pageContext.request.contextPath}/html/InsuranceForm.html">Apply Policy</a></li>
         	 <li> <a href="${pageContext.request.contextPath}/CompanyPoliciesView">View ALL Company Policies</a></li>
              <li> <a href="${pageContext.request.contextPath}/PolicyView">View Applied Policy</a></li>
             <li> <a href="${pageContext.request.contextPath}/View">View Profile</a></li>
-            <li> <a href="${pageContext.request.contextPath}/FamilyDetailsView">Family Details</a></li>
+            <li> <a href="${pageContext.request.contextPath}/FamilyDetailsView">View Family Details</a></li>
+             <li> <a href="${pageContext.request.contextPath}/html/calMonthPrem.html">calculate monthly premium</a></li>
          </ul>
     </nav>
 </body>
