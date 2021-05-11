@@ -109,4 +109,14 @@
     <servlet-name>CalculateMonthlyPremium</servlet-name>
     <url-pattern>/CalculateMonthlyPremium</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProfileUpdate</display-name>
+    <servlet-name>ProfileUpdate</servlet-name>
+    <servlet-class>com.healthInsurance.controller.ProfileUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileUpdate</servlet-name>
+    <url-pattern>/ProfileUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>

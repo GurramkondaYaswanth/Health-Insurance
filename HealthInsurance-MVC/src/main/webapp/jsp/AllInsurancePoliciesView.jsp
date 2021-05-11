@@ -4,18 +4,60 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+
+ /* font-family: Arial, Helvetica, sans-serif; */
+
+#companyPolicies {
+ 
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#companyPolicies td, #companyPolicies th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#companyPolicies tr:nth-child(even){background-color: #f2f2f2;}
+
+#companyPolicies tr:hover {background-color: #ddd;}
+
+#companyPolicies th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+h4{
+margin-left: 40%;
+}
+
+p{
+margin-left:3%;
+}
+
+a:link {
+  text-decoration: none;
+  color: blue;
+}
+</style>
+
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Insurance Policies</title>
 </head>
 <body>
 
-<p>Insurance Policies</p>
+<p>All Insurance Policies Available</p>
  <%
  List<CompanyPolicies> companyPoliciesList = new ArrayList<CompanyPolicies>();
  companyPoliciesList = ( List<CompanyPolicies>)  request.getAttribute("companyPoliciesList");
 %>
 
-	<table style="width:100%">
+	<table style="width:100%" id="companyPolicies">
   <tr>
   <th>Policy Id</th>
     <th>Percentage To be paid(%)</th>
@@ -36,6 +78,10 @@
 </table>
 
 <br>
+<br>
+<br>
+
+<h4>Other Details for the above policies</h4>
 <div>
 	<p>1.Claim settlement ratio of the above policies: 97%</p>
 	<p>2.Network hospitals cover: Apollo Hospitals, Diha clinic, Dr. Kamakshi Memorial Hospital, Dr. Mehta's Hospital, Fortis Malar Hospital, Frontier Lifeline Hospital, HCG Cancer Centre, Kauvery Hospital, MIOT International, Nithra Institute of Sleep Sciences, Sankara Nethralaya etc.. </p>
@@ -47,6 +93,8 @@
 </div>
 
 <br>
+
+<h4>Above terms</h4>
 <div>
 	<p>Percentage To be paid(%): this much percentage of Insurance Amount (choosen) will be paid Totally in Paying Duration </p>
 	<p>Paying Duration: Number of months u have to pay monthly premium </p>
@@ -55,7 +103,7 @@
 	<p>policy Type: Health Problem + Death: If a person dies due to a health releated problem the family can take (Insurance amount/family members)- money spent on him previously</p>
 
 </div>
-
+<br>
  <a href="http://localhost:8090/HealthInsurance-MVC/jsp/Home.jsp">Home Page</a>
 
 </body>

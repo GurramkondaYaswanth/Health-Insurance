@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+a:link {
+  text-decoration: none;
+  color: blue;
+}
+
+#container{
+
+padding:25%;
+
+padding-top:5%;
+
+}
+</style>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Signup</title>
 </head>
 <body>
+<div id="container">
 	<h3>Signup page</h3>
 	
 <form name="Login" method="post" action="../SignupServlet">
@@ -12,21 +27,22 @@
  <tr><td> email</td>
   <td><input type="text" name="email"/></td>
   </tr>
-	<tr><td>Password<td>
+	<tr><td>Password</td>
+	
 	<td><input type="password" name="password"></td>
 	</tr>
 	 <tr><td> name</td>
   <td><input type="text" name="name"/></td>
   </tr>
    <tr><td> phoneNumber</td>
-  <td><input type="text" name="phoneNumber"/></td>
+  <td><input type="text" pattern="[0-9]{10}" placeholder="10 digit phonenumber" name="phoneNumber"/></td>
   </tr>
-   </tr>
+  
    <tr><td> address</td>
   <td><input type="text" name="address"/></td>
   </tr>
-   </tr>
-   <tr><td> customer_city</td>
+ 
+   <tr><td> city</td>
   <td><input type="text" name="customer_city"/></td>
   </tr>
 	
@@ -37,5 +53,6 @@
 </table>
 </form>
   <a href="http://localhost:8090/HealthInsurance-MVC/html/Signin.html">Signin</a>
+  </div>
 </body>
 </html>
